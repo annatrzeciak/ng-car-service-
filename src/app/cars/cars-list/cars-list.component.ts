@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cars-list.component.scss']
 })
 export class CarsListComponent implements OnInit {
+  totalCost: number;
   cars: Car[] = [
     {
       id: 1,
@@ -33,7 +34,7 @@ export class CarsListComponent implements OnInit {
         surname: 'Nowak'
       },
       cost: 1200,
-      isFullyDamaged: true
+      isFullyDamaged: false
     },
     {
       id: 3,
@@ -52,6 +53,11 @@ export class CarsListComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+   this.countTotalCost();
   }
-
+  countTotalCost(): void {
+    this.totalCost = this.cars
+      .map((car) => car.cost)
+      .reduce((prev, next) => prev + next);
+  }
 }

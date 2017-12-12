@@ -3,3 +3,13 @@
 body{
     background: $background;
 }
+
+.no-cars-info, .total-cost{
+    text-align: center;
+    font-size: 18px;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: $blue;
+    padding: 20px;
+    background: $white;
+}
