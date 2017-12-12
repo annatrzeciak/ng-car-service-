@@ -1,5 +1,10 @@
-import { Car } from './../models/car';
-import { Component, OnInit } from '@angular/core';
+import {
+  Car
+} from './../models/car';
+import {
+  Component,
+  OnInit
+} from '@angular/core';
 
 
 @Component({
@@ -9,8 +14,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CarsListComponent implements OnInit {
   totalCost: number;
-  cars: Car[] = [
-    {
+  grossCost: number;
+  cars: Car[] = [{
       id: 1,
       model: 'Mazda Rx7',
       plate: 'GD2121E',
@@ -50,14 +55,18 @@ export class CarsListComponent implements OnInit {
       isFullyDamaged: true
     }
   ];
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
-   this.countTotalCost();
+    this.countTotalCost();
   }
   countTotalCost(): void {
     this.totalCost = this.cars
       .map((car) => car.cost)
       .reduce((prev, next) => prev + next);
+  }
+  onShonwnGross(grossCost: number): void {
+    this.grossCost = grossCost;
+
   }
 }

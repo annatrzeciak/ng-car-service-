@@ -1,6 +1,10 @@
-
-import { Component, OnInit, Input } from '@angular/core';
-
+import {
+  Component,
+  OnInit,
+  Input,
+  Output,
+  EventEmitter
+} from '@angular/core';
 
 @Component({
   selector: 'app-total-cost',
@@ -10,10 +14,15 @@ import { Component, OnInit, Input } from '@angular/core';
 export class TotalCostComponent implements OnInit {
   @Input()
   totalCost: number;
+  @Output()
+  shownGross: EventEmitter<number> = new EventEmitter<number>();
+  private VAT: number = 1.23;
 
+  showGross(): void {
+    this.shownGross.emit(this.totalCost * this.VAT);
+  }
   constructor() { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
 }
