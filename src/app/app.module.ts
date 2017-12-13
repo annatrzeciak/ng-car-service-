@@ -1,3 +1,4 @@
+import { TotalCostComponent } from './cars/total-cost/total-cost.component';
 import { CarsModule } from './cars/cars.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';

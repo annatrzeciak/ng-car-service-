@@ -32,11 +32,14 @@
       </ng-template>
     </div>
   </div>
-  <app-total-cost [totalCost]='totalCost' (shownGross)="onShonwnGross($event)"></app-total-cost>
-  <div class="row" *ngIf="grossCost">
+<div class="row">
+  <div class="col-sm-12"><button (click)="showGross()" class="btn btn-primary float-left">Pokaż kwotę brutto</button></div>
+</div>
+  <app-total-cost #totalCostRef [totalCost]='totalCost' (shownGross)="onShownGross($event)"></app-total-cost>
+  <div class="row " *ngIf="grossCost">
     <div class="col-sm-12">
       <div class="total-cost">
-        <p class="text-right">Koszt brutto: {{grossCost}} PLN</p>
+        <p class="text-right">Kwota brutto:{{grossCost}} PLN</p>
       </div>
     </div>
   </div>

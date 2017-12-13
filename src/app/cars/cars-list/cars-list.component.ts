@@ -1,10 +1,6 @@
-import {
-  Car
-} from './../models/car';
-import {
-  Component,
-  OnInit
-} from '@angular/core';
+import { Car } from './../models/car';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { TotalCostComponent } from '../total-cost/total-cost.component';
 
 
 @Component({
@@ -13,9 +9,11 @@ import {
   styleUrls: ['./cars-list.component.scss']
 })
 export class CarsListComponent implements OnInit {
+  @ViewChild('totalCostRef') totalCostRef: TotalCostComponent;
   totalCost: number;
   grossCost: number;
-  cars: Car[] = [{
+  cars: Car[] = [
+    {
       id: 1,
       model: 'Mazda Rx7',
       plate: 'GD2121E',
@@ -55,7 +53,7 @@ export class CarsListComponent implements OnInit {
       isFullyDamaged: true
     }
   ];
-  constructor() {}
+  constructor() { }
 
   ngOnInit() {
     this.countTotalCost();
@@ -65,8 +63,10 @@ export class CarsListComponent implements OnInit {
       .map((car) => car.cost)
       .reduce((prev, next) => prev + next);
   }
-  onShonwnGross(grossCost: number): void {
+  showGross() {
+    this.totalCostRef.showGross();
+  }
+  onShownGross(grossCost: number) {
     this.grossCost = grossCost;
-
   }
 }
