@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-12">
-      <table *ngIf="cars.length>0; else noCarsInfo" class="cs-table table table-striped">
+      <table *ngIf="cars && cars.length>0; else noCarsInfo" class="cs-table table table-striped">
         <thead>
           <tr>
             <th>Model</th>
@@ -15,12 +15,12 @@
         </thead>
         <tbody>
           <tr [ngClass]="{'row-error':car.isFullyDamaged}" *ngFor="let car of cars; let i=index">
-            <td>{{car.model}}</td>
-            <td>{{car.plate}}</td>
-            <td>{{car.deliveryDate}}</td>
-            <td>{{car.deadline}}</td>
-            <td>{{car.client.firstName}} {{car.client.surname}}</td>
-            <td>{{car.cost}}</td>
+            <td>{{car?.model}}</td>
+            <td>{{car?.plate}}</td>
+            <td>{{car?.deliveryDate}}</td>
+            <td>{{car?.deadline}}</td>
+            <td>{{car?.clientFirstName}} {{car?.clientSurname}}</td>
+            <td>{{car?.cost}}</td>
             <td>( x )</td>
           </tr>
         </tbody>
@@ -32,9 +32,11 @@
       </ng-template>
     </div>
   </div>
-<div class="row">
-  <div class="col-sm-12"><button (click)="showGross()" class="btn btn-primary float-left">Pokaż kwotę brutto</button></div>
-</div>
+  <div class="row">
+    <div class="col-sm-12">
+      <button (click)="showGross()" class="btn btn-primary float-left">Pokaż kwotę brutto</button>
+    </div>
+  </div>
   <app-total-cost #totalCostRef [totalCost]='totalCost' (shownGross)="onShownGross($event)"></app-total-cost>
   <div class="row " *ngIf="grossCost">
     <div class="col-sm-12">
