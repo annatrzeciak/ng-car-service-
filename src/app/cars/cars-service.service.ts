@@ -13,4 +13,8 @@ export class CarsServiceService {
     return this.http.get(this.apiUrl)
       .map((res) => res.json());
   }
+  getCar(id: number): Observable<Car> {
+    return this.http.get(this.apiUrl + `/${id}`)
+      .map((res) => res.json());
+  }
 }
