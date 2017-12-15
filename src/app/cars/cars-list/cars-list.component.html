@@ -20,7 +20,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr class="row-car" [ngClass]="{'row-error':car.isFullyDamaged}" *ngFor="let car of cars; let i=index" (click)='goToCarDetails(car)' >
+          <tr class="row-car" [ngClass]="{'row-error':car.isFullyDamaged}" *ngFor="let car of cars; let i=index" (click)='goToCarDetails(car)'>
             <td>{{car?.model}}</td>
             <td>{{car?.plate}}</td>
             <td>{{car?.deliveryDate}}</td>
@@ -51,4 +51,67 @@
       </div>
     </div>
   </div>
+</div>
+<p class="data-header">Dodaj nowy samochód</p>
+<div class="data-container">
+  <form>
+    <div class="row form-group">
+      <div class="col-sm-4">
+        <label for="">Model</label>
+        <input type="text" class="form-control" placeholder="model">
+      </div>
+      <div class="col-sm-4">
+        <label for="">Typ</label>
+        <input type="text" class="form-control" placeholder="typ">
+      </div>
+      <div class="col-sm-4">
+        <label for="">Numer rejestracyjny</label>
+        <input type="text" class="form-control" placeholder="numer rejestracyjny">
+      </div>
+    </div>
+    <div class="row form-group">
+      <div class="col-sm-4">
+        <label for="">Data dostarczenia</label>
+        <input type="text" class="form-control" placeholder="data dostarczenia">
+      </div>
+      <div class="col-sm-4">
+        <label for="">Termin oddania</label>
+        <input type="text" class="form-control" placeholder="termin oddania">
+      </div>
+      <div class="col-sm-4">
+        <label for="">Kolor</label>
+        <input type="text" class="form-control" placeholder="kolor">
+      </div>
+    </div>
+    <div class="row form-group">
+      <div class="col-sm-4">
+        <label for="">Moc</label>
+        <input type="text" class="form-control" placeholder="moc">
+      </div>
+      <div class="col-sm-4">
+        <label for="">Klient: imię</label>
+        <input type="text" class="form-control" placeholder="imię">
+      </div>
+      <div class="col-sm-4">
+        <label for="">Klient: nazwisko</label>
+        <input type="text" class="form-control" placeholder="nazwisko">
+      </div>
+    </div>
+    <div class="row form-group">
+      <div class="col-sm-4">
+        <label for="">Jest uszkodzony?
+          <input type="checkbox" class="form-control" placeholder="uszkodzony">
+        </label>
+      </div>
+      <div class="col-sm-4">
+        <label for="">Koszt</label>
+        <input type="text" class="form-control" placeholder="koszt">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <button type="submit" class="btn btn-primary float-right">Dodaj samochód</button>
+      </div>
+    </div>
+  </form>
 </div>
