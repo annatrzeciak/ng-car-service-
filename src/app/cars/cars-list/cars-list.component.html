@@ -21,13 +21,15 @@
         </thead>
         <tbody>
           <tr class="row-car" [ngClass]="{'row-error':car.isFullyDamaged}" *ngFor="let car of cars; let i=index" (click)='goToCarDetails(car)'>
-            <td>{{car?.model}}</td>
+            <td appImportant >{{car?.model | uppercase}}</td>
             <td>{{car?.plate}}</td>
-            <td>{{car?.deliveryDate}}</td>
-            <td>{{car?.deadline}}</td>
-            <td>{{car?.clientFirstName}} {{car?.clientSurname}}</td>
-            <td>{{car?.cost}}</td>
-            <td>( x )</td>
+            <td>{{car?.deliveryDate|date:'shortDate'}}</td>
+            <td>{{car?.deadline|date:'shortDate'}}</td>
+            <td>{{car?.clientFirstName| nameShortcut}} {{car?.clientSurname}}</td>
+            <td appImportant>{{car?.cost|currency:'PLN ':true}}</td>
+            <td><button (click)='removeCar(car, $event)' type="button" class="close" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button></td>
           </tr>
         </tbody>
       </table>
@@ -54,64 +56,72 @@
 </div>
 <p class="data-header">Dodaj nowy samochód</p>
 <div class="data-container">
-  <form>
+  <form [formGroup]="carForm">
     <div class="row form-group">
       <div class="col-sm-4">
         <label for="">Model</label>
-        <input type="text" class="form-control" placeholder="model">
+        <input formControlName="model" type="text" class="form-control" placeholder="model">
+        <p *ngIf="!carForm.get('model').valid && carForm.get('model').dirty" class="error">To pole jest wymagane</p>
       </div>
       <div class="col-sm-4">
         <label for="">Typ</label>
-        <input type="text" class="form-control" placeholder="typ">
+        <input formControlName="type" type="text" class="form-control" placeholder="typ">
       </div>
       <div class="col-sm-4">
         <label for="">Numer rejestracyjny</label>
-        <input type="text" class="form-control" placeholder="numer rejestracyjny">
+        <input formControlName="plate" type="text" class="form-control" placeholder="numer rejestracyjny">
+        <p *ngIf="!carForm.get('plate').valid && carForm.get('plate').dirty" class="error">To pole jest wymagane i musi zawierać od 3 do 7 znaków.</p>
       </div>
     </div>
     <div class="row form-group">
       <div class="col-sm-4">
         <label for="">Data dostarczenia</label>
-        <input type="text" class="form-control" placeholder="data dostarczenia">
+        <input formControlName="deliveryDate" type="text" class="form-control" placeholder="data dostarczenia">
       </div>
       <div class="col-sm-4">
         <label for="">Termin oddania</label>
-        <input type="text" class="form-control" placeholder="termin oddania">
+        <input formControlName="deadline" type="text" class="form-control" placeholder="termin oddania">
       </div>
       <div class="col-sm-4">
         <label for="">Kolor</label>
-        <input type="text" class="form-control" placeholder="kolor">
+        <input formControlName="color" type="text" class="form-control" placeholder="kolor">
       </div>
     </div>
     <div class="row form-group">
       <div class="col-sm-4">
         <label for="">Moc</label>
-        <input type="text" class="form-control" placeholder="moc">
+        <input formControlName="power" type="text" class="form-control" placeholder="moc">
       </div>
       <div class="col-sm-4">
         <label for="">Klient: imię</label>
-        <input type="text" class="form-control" placeholder="imię">
+        <input formControlName="clientFirstName" type="text" class="form-control" placeholder="imię">
       </div>
       <div class="col-sm-4">
         <label for="">Klient: nazwisko</label>
-        <input type="text" class="form-control" placeholder="nazwisko">
+        <input formControlName="clientSurname" type="text" class="form-control" placeholder="nazwisko">
       </div>
     </div>
     <div class="row form-group">
       <div class="col-sm-4">
+        <label for="">Rok produkcji</label>
+        <input formControlName="year" type="text" class="form-control" placeholder="rok produkcji">
+      </div>
+      <div class="col-sm-4">
         <label for="">Jest uszkodzony?
-          <input type="checkbox" class="form-control" placeholder="uszkodzony">
+          <input formControlName="isFullyDamaged" type="checkbox" class="form-control" placeholder="uszkodzony">
         </label>
       </div>
       <div class="col-sm-4">
         <label for="">Koszt</label>
-        <input type="text" class="form-control" placeholder="koszt">
+        <input formControlName="cost" type="text" class="form-control" placeholder="koszt">
       </div>
     </div>
     <div class="row">
       <div class="col-sm-12">
-        <button type="submit" class="btn btn-primary float-right">Dodaj samochód</button>
+          <button [disabled]="carForm.invalid" (click)="addCar()" type="submit" class="btn btn-primary float-right">Dodaj samochód</button>
+        <button  (click)="carForm.reset()" type="submit" class="btn btn-default float-right">Wyczyść</button>
       </div>
     </div>
   </form>
+
 </div>

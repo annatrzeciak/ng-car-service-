@@ -10,6 +10,7 @@ export interface Car {
     power: number;
     clientFirstName: string;
     clientSurname: string;
+    year: number;
     cost: number;
     isFullyDamaged: boolean;
 

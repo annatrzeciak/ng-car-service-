@@ -27,3 +27,13 @@ body {
   background: $white;
   margin: 15px;
 }
+.error{
+  background: $red;
+  color:$white;
+  font-size:11px;
+  padding: 4px 8px;
+}
+button{
+  margin:10px;
+  cursor: pointer;
+}
