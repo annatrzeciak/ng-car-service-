@@ -1,6 +1,5 @@
 export interface Car {
-
-    id: number;
+    _id: { $oid: string};
     model: string;
     type: string;
     plate: string;

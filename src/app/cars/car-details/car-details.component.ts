@@ -43,7 +43,7 @@ export class CarDetailsComponent implements OnInit {
     });
   }
   updateCar() {
-    this.carsService.updateCar(this.car.id, this.carForm.value).subscribe(() => {
+    this.carsService.updateCar(this.car._id.$oid, this.carForm.value).subscribe(() => {
       this.router.navigate(['/cars']);
       this.carForm.reset();
     });

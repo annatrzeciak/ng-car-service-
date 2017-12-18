@@ -13,10 +13,11 @@ import { CarsModule } from './cars/cars.module';
 import { AppRoutingModule } from './app-routing,module';
 import { CarsRoutingModule } from './cars/cars-routing.module';
 
+
 @NgModule({
   declarations: [
-    AppComponent
-  ],
+    AppComponent,
+     ],
   imports: [
     BrowserModule,
     FormsModule,

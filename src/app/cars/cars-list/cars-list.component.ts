@@ -47,7 +47,7 @@ export class CarsListComponent implements OnInit {
 
   }
   goToCarDetails(car: Car) {
-    this.router.navigate(['/cars', car.id]);
+    this.router.navigate(['/cars', car._id.$oid]);
   }
   buildCarForm() {
     return this.formBuilder.group({
@@ -75,7 +75,7 @@ export class CarsListComponent implements OnInit {
   }
   removeCar(car, event) {
     event.stopPropagation();
-    this.carsService.removeCar(car.id).subscribe(() => {
+    this.carsService.removeCar(car._id.$oid).subscribe(() => {
       this.loadCars();
     });
 
